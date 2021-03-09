@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <navbar></navbar>
     <img class="mx-auto d-block" src="../assets/astrology.png" alt="">
     <div class="text-center">
       <h1 class="display-1">Astres - ologie</h1>
@@ -17,8 +18,15 @@
 </template>
 
 <script>
+import Navbar from "./../components/Navbar.vue";
+
+
 export default {
   name: "Accueil",
+  components: {
+    Navbar,
+  },
+
 };
 </script>
 
@@ -28,8 +36,13 @@ export default {
 .container {
   margin-bottom: 15px;
 }
+
 .btn {
   background-color: #6f42c1;
+  color: white;
+}
+
+.btn:hover {
   color: white;
 }
 </style>
