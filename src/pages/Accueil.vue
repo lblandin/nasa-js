@@ -10,9 +10,9 @@
       Un repas de famille et vous ne vous sentez pas bien ? Dites que la lune est en froid avec Jupiter et que ça joue sur votre humeur !
       Pour en savoir plus rendez-vous sur le README du projet</p>
 
-          <router-link tag="div" to="/listeAstres">
-            <a class="btn">Voir les astres</a>
-          </router-link>
+        <router-link tag="div" to="/listeAstres">
+          <a class="btn">Voir les astres</a>
+        </router-link>
     </div>
   </div>
 </template>
