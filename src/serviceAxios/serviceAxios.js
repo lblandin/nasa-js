@@ -10,10 +10,10 @@ function findAll() {
 }
 
 
-function find(id) {
+function findById(id) {
     return axios
-      .get('https://api.le-systeme-solaire.net/rest/bodies' + id)
-      .then(response => response.data.bodies)
+      .get('https://api.le-systeme-solaire.net/rest/bodies/' + id)
+      .then(response => response.data)
       .catch(error => {
         console.log(error)
       })
@@ -21,6 +21,6 @@ function find(id) {
 
 export default {
     findAll,
-    find
+    findById
 }
   
