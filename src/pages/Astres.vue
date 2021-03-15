@@ -1,9 +1,6 @@
 <template lang="fr">
   <navbar></navbar>
     <div class="card">
-      <!-- <router-link tag="button" to="/listeAstres" class="btn btn-primary">
-        Return 
-      </router-link> -->
       <div class="card-body">
         <h2 class="card-title">{{ astre.name }}</h2>
 
@@ -16,15 +13,13 @@
             <p class="card-text fw-bold">Aphelion: {{ astre.aphelion }}</p>
             <p class="card-text fw-bold">Eccentricity: {{ astre.eccentricity }}</p>
             <p class="card-text fw-bold">Inclination: {{ astre.inclination }}</p>
-            <p class="card-text fw-bold">Masse : {{ astre.mass.massValue }} and {{ astre.mass.massExponent }}</p>
-            <p class="card-text fw-bold">Volume : {{ astre.vol.volValue }} and {{ astre.vol.volExponent }}</p>
             <p class="card-text fw-bold">Densité : {{ astre.density }}</p>
             <p class="card-text fw-bold">Gravity: {{ astre.gravity }}</p>
+            <p class="card-text fw-bold">Escape : {{ astre.escape }}</p>
+            <p class="card-text fw-bold">MeanRadius: {{ astre.meanRadius }}</p>
           </div>
 
           <div class="col">
-            <p class="card-text fw-bold">Escape : {{ astre.escape }}</p>
-            <p class="card-text fw-bold">MeanRadius: {{ astre.meanRadius }}</p>
             <p class="card-text fw-bold">EquaRadius: {{ astre.equaRadius }}</p>
             <p class="card-text fw-bold">PolarRadius: {{ astre.polarRadius }}</p>
             <p class="card-text fw-bold">Flattening: {{ astre.flattening }}</p>
@@ -39,32 +34,54 @@
         </div>
       </div>
     </div>
+
+    <div class="text-center">
+      <h2>Moons</h2>
+      <div v-if="astre.moons !== null">
+        <div class="listMoons">
+          <CardMoon v-for="moon in moons" :key="moon.id" :moon="moon"></CardMoon>
+        </div>
+      </div>
+      <p v-else>{{ astre.name }} n'a pas de lune.</p>
+    </div>
 </template>
 
 <script>
 import AxiosAPI from "./../serviceAxios/serviceAxios";
 import Navbar from "./../components/Navbar";
+import CardMoon from "./../components/CardMoon";
 
 export default {
   name: "Astre",
   components: {
-    Navbar
+    Navbar,
+    CardMoon
   },
   data() {
     return {
-      astre: {}
+      astre: {},
+      moons: [],
     }
   },
   props: {
     id: String,
   },
   methods: {
-    async fetchAstre() {
+    async getAstre() {
       this.astre = await AxiosAPI.findById(this.id);
+      if (this.astre.moons !== null) {
+        this.astre.moons.forEach(({ rel }) => {
+          this.getMoon(rel);
+        });
+      }
+    },
+    async getMoon(moon) {
+      const response = await AxiosAPI.findMoons(moon);
+      this.moons.push(response);
     },
   },
   mounted() {
-    this.fetchAstre();
+    this.getAstre();
   },
 };
 </script>
@@ -75,5 +92,13 @@ export default {
   width: 550px; 
   margin: auto;
   margin-bottom: 15px;
+}
+
+.listMoons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 1.2rem;
+  margin: auto;
 }
 </style>

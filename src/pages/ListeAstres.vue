@@ -10,7 +10,7 @@
 
 <script>
 import Navbar from "./../components/Navbar.vue";
-import Card from "./../components/Card.vue";
+import Card from "../components/Card.vue";
 import AxiosAPI from "./../serviceAxios/serviceAxios";
 
 export default {
