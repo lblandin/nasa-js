@@ -39,7 +39,14 @@
       <h2>Moons</h2>
       <div v-if="astre.moons !== null">
         <div class="listMoons">
-          <CardMoon v-for="moon in moons" :key="moon.id" :moon="moon"></CardMoon>
+          <div class="card" v-for="moon in moons" :key="moon.id" :moon="moon">
+            <div class="card-body">
+              <h5 class="card-title">{{ moon.id }}</h5>
+              <router-link @click="refresh" tag="button" :to="{ name: 'Astre', params: { id: moon.id }}">
+                <a class="btn">Voir détails</a>
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
       <p v-else>{{ astre.name }} n'a pas de lune.</p>
@@ -49,13 +56,11 @@
 <script>
 import AxiosAPI from "./../serviceAxios/serviceAxios";
 import Navbar from "./../components/Navbar";
-import CardMoon from "./../components/CardMoon";
 
 export default {
   name: "Astre",
   components: {
     Navbar,
-    CardMoon
   },
   data() {
     return {
@@ -64,7 +69,15 @@ export default {
     }
   },
   props: {
-    id: String,
+    id: String
+  },
+  watch: {
+    refresh() {
+      if(this.$route.path === '/listeAstres/${id}') {
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
   },
   methods: {
     async getAstre() {
