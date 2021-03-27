@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="d-flex align-items-center">
           <h2 class="card-title">{{ astre.name }}</h2>
-          <Favoris></Favoris>
+          <Favoris :id="astre.id" :name="astre.englishName" :favoris="favoris" @update="updateFavoris"></Favoris>
         </div>
 
         <div class="row">
@@ -71,6 +71,7 @@ export default {
     return {
       astre: {},
       moons: [],
+      favoris: false
     }
   },
   props: {
@@ -94,7 +95,10 @@ export default {
 
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
-    }
+    },
+    updateFavoris(value) {
+      this.favoris = value;
+    },
   },
   mounted() {
     this.getAstre();
