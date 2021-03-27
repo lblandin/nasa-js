@@ -30,8 +30,8 @@ function findMoons(moon) {
 
 
 export default {
-    findAll,
-    findById,
-    findMoons
+  findAll,
+  findById,
+  findMoons
 }
   

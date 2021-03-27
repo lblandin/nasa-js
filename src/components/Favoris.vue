@@ -12,7 +12,6 @@ export default {
     name: "Favoris",
     props: {
         id: String,
-        name: String,
         favoris: Boolean,
     },
     methods: {

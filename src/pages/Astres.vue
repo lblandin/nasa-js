@@ -76,14 +76,6 @@ export default {
   props: {
     id: String
   },
-  watch: {
-    refresh() {
-      if(this.$route.path === '/listeAstres/${id}') {
-
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
-    }
-  },
   methods: {
     async getAstre() {
       this.astre = await AxiosAPI.findById(this.id);
@@ -97,6 +89,12 @@ export default {
       const response = await AxiosAPI.findMoons(moon);
       this.moons.push(response);
     },
+    refresh() {
+      if(this.$route.path === '/listeAstres/${id}') {
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
   },
   mounted() {
     this.getAstre();

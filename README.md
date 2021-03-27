@@ -42,3 +42,8 @@ npm install
 ```
 npm run serve
 ```
+
+### Store
+
+To see value in the store i put some console.log() in my code. You can press F12 to see different update in the store when you delete or add astre
+

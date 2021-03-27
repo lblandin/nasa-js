@@ -9,19 +9,18 @@ const store = createStore({
 
   mutations: {
 
-      ajouterFavoris(state, favorisItem) {
-        state.favorisTable.push(favorisItem);
-      },
+    ajouterFavoris(state, favorisItem) {
+      state.favorisTable.push(favorisItem);
+    },
   
-      // A REVOIR
-      supprimerFavoris(state, id) {
-        let index = state.favorisTable.findIndex(favorisItemCourant => favorisItemCourant.id == id)
-        state.favorisTable.splice(index, 1)
-      }
+    supprimerFavoris(state, id) {
+      let index = state.favorisTable.findIndex(favorisItemCourant => favorisItemCourant.id == id)
+      state.favorisTable.splice(index, 1)
+    }
   },
 
   getters: {
-      favorisTable: state => state.favorisTable
+    favorisTable: state => state.favorisTable
   }
 })
 
