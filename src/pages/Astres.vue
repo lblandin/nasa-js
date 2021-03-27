@@ -2,7 +2,10 @@
   <navbar></navbar>
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">{{ astre.name }}</h2>
+        <div class="d-flex align-items-center">
+          <h2 class="card-title">{{ astre.name }}</h2>
+          <Favoris></Favoris>
+        </div>
 
         <div class="row">
           <div class="col">
@@ -56,11 +59,13 @@
 <script>
 import AxiosAPI from "./../serviceAxios/serviceAxios";
 import Navbar from "./../components/Navbar";
+import Favoris from './../components/Favoris'
 
 export default {
   name: "Astre",
   components: {
     Navbar,
+    Favoris
   },
   data() {
     return {
